@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_flags",
+  "info": {
+    "singularName": "country-flag",
+    "pluralName": "country-flags",
+    "displayName": "Country flag",
+    "description": "Ordered name + flag image for region strips, selectors, or grids (any industry)."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "flag": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "config": {
+    "metadatas": {
+      "flag": {
+        "edit": {
+          "label": "Flag image",
+          "description": "About 80×50px or similar; small file for fast load."
+        },
+        "list": { "label": "Flag image" }
+      }
+    }
+  }
+}

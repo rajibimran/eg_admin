@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "booking_page",
+  "info": {
+    "singularName": "booking-page",
+    "pluralName": "booking-pages",
+    "displayName": "Booking Page",
+    "description": "Booking page config: time slots and SEO"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "entryTitle": {
+      "type": "string",
+      "default": "Booking Page",
+      "required": false,
+      "maxLength": 120
+    },
+    "timeSlotLines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.simple-line",
+      "required": false
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.entry",
+      "required": false
+    }
+  },
+  "config": {
+    "metadatas": {
+      "entryTitle": {
+        "edit": {
+          "label": "Entry title",
+          "description": "Label shown in the Strapi header for this single type. Safe to leave as default; not used by the public booking page."
+        },
+        "list": { "label": "Entry title" }
+      }
+    }
+  }
+}

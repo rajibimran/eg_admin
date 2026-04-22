@@ -1,0 +1,43 @@
+{
+  "name": "eg-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Strapi CMS for eg_web (brand B) — same API contract as uniweb backend",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.42.0",
+    "@strapi/plugin-users-permissions": "5.42.0",
+    "@strapi/strapi": "5.42.0",
+    "better-sqlite3": "12.8.0",
+    "nodemailer": "^6.9.16",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=24.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "73e4d31a-cb89-46bc-8641-1c9c4a6e41c9",
+    "installId": "1c28c643fa07f2d5dbd3ab821ede6a3007694743ce238421d1ba9fdb3650c98c"
+  }
+}

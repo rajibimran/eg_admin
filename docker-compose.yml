@@ -1,0 +1,16 @@
+# Template for brand B. Add a Dockerfile here (e.g. copy from your VPS template) or switch to `image:`.
+# Port 1338:1337 avoids clashing with uniadmin on the same host during dev.
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: eg-admin-strapi
+    ports:
+      - "1338:1337"
+    volumes:
+      - ./data:/opt/app/data
+      - ./public/uploads:/opt/app/public/uploads
+    restart: unless-stopped
+    env_file:
+      - .env

@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "services_page",
+  "info": {
+    "singularName": "services-page",
+    "pluralName": "services-pages",
+    "displayName": "Services Page",
+    "description": "Services page config: categories and comparison rows"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "entryTitle": {
+      "type": "string",
+      "default": "Services Page",
+      "required": false,
+      "maxLength": 120
+    },
+    "comparisonRows": {
+      "type": "component",
+      "repeatable": true,
+      "component": "services.comparison-row"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "entryTitle": {
+        "edit": {
+          "label": "Entry title",
+          "description": "Label shown in the Strapi header for this single type. Safe to leave as default."
+        },
+        "list": { "label": "Entry title" }
+      }
+    }
+  }
+}

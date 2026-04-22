@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_screening_process_steps",
+  "info": {
+    "displayName": "Process Step",
+    "description": "Step row for screening process timeline"
+  },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text", "required": true },
+    "estimatedTime": { "type": "string", "required": true },
+    "detailLines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.simple-line",
+      "required": false
+    }
+  }
+}
