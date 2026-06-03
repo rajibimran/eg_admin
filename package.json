@@ -2,7 +2,7 @@
   "name": "eg-admin",
   "version": "0.1.0",
   "private": true,
-  "description": "Strapi CMS for eg_web (brand B) — same API contract as uniweb backend",
+  "description": "Strapi CMS for eg_web (brand B) — same API contract as um_admin (Unicare reference)",
   "scripts": {
     "build": "strapi build",
     "console": "strapi console",

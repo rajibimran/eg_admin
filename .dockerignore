@@ -1,0 +1,17 @@
+node_modules
+.tmp
+dist
+build
+.git
+.env
+.env.*
+!.env.example
+*.log
+.strapi
+.strapi-updater.json
+coverage
+exports
+private/lab-reports/*
+!private/lab-reports/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep

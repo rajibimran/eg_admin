@@ -604,7 +604,7 @@ export interface ApiBookingRequestBookingRequest
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -809,11 +809,11 @@ export interface ApiCountryGuidelineCountryGuideline
     draftAndPublish: true;
   };
   attributes: {
-    approvalNote: Schema.Attribute.String & Schema.Attribute.Required;
     countryId: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    details: Schema.Attribute.Text & Schema.Attribute.Required;
     expertTip: Schema.Attribute.Text & Schema.Attribute.Required;
     flag: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -823,8 +823,17 @@ export interface ApiCountryGuidelineCountryGuideline
     > &
       Schema.Attribute.Private;
     mandatoryTests: Schema.Attribute.Text & Schema.Attribute.Required;
+    marketingPoint1: Schema.Attribute.String;
+    marketingPoint2: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    processingTime: Schema.Attribute.String & Schema.Attribute.Required;
+    priority: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     rejectionCriteria: Schema.Attribute.Text & Schema.Attribute.Required;
     specialRules: Schema.Attribute.Text & Schema.Attribute.Required;
@@ -1638,6 +1647,14 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     pricing: Schema.Attribute.Component<'service.pricing-row', true>;
+    priority: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     relatedServices: Schema.Attribute.Relation<
       'manyToMany',
@@ -1704,6 +1721,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.SingleTypeSchema {
     bookingFormSendConfirmation: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<true>;
     bookingFormToEmail: Schema.Attribute.Email;
+    chatbotScript: Schema.Attribute.Text;
     commentsEnabled: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     contactFormSendConfirmation: Schema.Attribute.Boolean &
@@ -1724,9 +1742,13 @@ export interface ApiSiteConfigSiteConfig extends Struct.SingleTypeSchema {
     footerLegacyHelpTitle: Schema.Attribute.String;
     footerLegacyQuickTitle: Schema.Attribute.String;
     footerLegacyServicesTitle: Schema.Attribute.String;
+    footerLogo: Schema.Attribute.Media<'images' | 'files'>;
     footerMapPlaceholderLabel: Schema.Attribute.String;
     footerPrivacyLinkLabel: Schema.Attribute.String;
     googleMapsEmbed: Schema.Attribute.Text;
+    homeServicesEyebrow: Schema.Attribute.String;
+    homeServicesHeading: Schema.Attribute.String;
+    homeServicesSubheading: Schema.Attribute.Text;
     homeTrustIntroBody: Schema.Attribute.Text;
     homeTrustIntroCtaHref: Schema.Attribute.String;
     homeTrustIntroCtaLabel: Schema.Attribute.String;

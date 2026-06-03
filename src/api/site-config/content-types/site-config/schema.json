@@ -20,6 +20,12 @@
       "required": false,
       "allowedTypes": ["images", "files"]
     },
+    "footerLogo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files"]
+    },
     "phone": { "type": "string", "required": true },
     "email": { "type": "email", "required": true },
     "address": { "type": "text", "required": true },
@@ -186,6 +192,22 @@
     "homeTrustStatsHeading": {
       "type": "string",
       "required": false
+    },
+    "homeServicesEyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "homeServicesHeading": {
+      "type": "string",
+      "required": false
+    },
+    "homeServicesSubheading": {
+      "type": "text",
+      "required": false
+    },
+    "chatbotScript": {
+      "type": "text",
+      "required": false
     }
   },
   "config": {
@@ -253,9 +275,40 @@
       "logo": {
         "edit": {
           "label": "Logo (50x65px)",
-          "description": "Resize to about 50×65px; keep file small (≤50 KB). SVG or PNG."
+          "description": "Header logo on light backgrounds. Resize to about 50×65px; keep file small (≤50 KB). SVG or PNG."
         },
         "list": { "label": "Logo (50x65px)" }
+      },
+      "footerLogo": {
+        "edit": {
+          "label": "Footer logo (optional)",
+          "description": "Logo for the dark footer — upload a white or light version (PNG/SVG). If empty, the site name is shown as large text instead. Do not reuse the header logo unless it reads well on a dark background."
+        },
+        "list": { "label": "Footer logo" }
+      },
+      "homeServicesEyebrow": {
+        "edit": {
+          "label": "Home services — eyebrow",
+          "description": "Small label above the home page services heading (e.g. “Clinical services”)."
+        }
+      },
+      "homeServicesHeading": {
+        "edit": {
+          "label": "Home services — heading",
+          "description": "Main title for the home page services carousel section."
+        }
+      },
+      "homeServicesSubheading": {
+        "edit": {
+          "label": "Home services — subheading",
+          "description": "Supporting line under the home services heading."
+        }
+      },
+      "chatbotScript": {
+        "edit": {
+          "label": "Chatbot — embed script",
+          "description": "Paste the `<script>` tags from your chat provider (e.g. fin.ai). The widget loads on every page when this field is filled. Example: `<script src=\"https://your-provider.example/js/min/jquery.min.js\"></script>` `<script id=\"sbinit\" src=\"https://your-provider.example/js/main.js\"></script>` Leave empty to hide the chat bubble."
+        }
       }
     }
   }

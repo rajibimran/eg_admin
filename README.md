@@ -1,6 +1,6 @@
 # eg_admin — Brand B Strapi (separate CMS)
 
-This folder is a **copy of** `../backend` with the **same content-types and API routes** as the uniweb Strapi app. Run it with a **fresh database** and **separate** `public/uploads` volume for this brand.
+This folder is a **copy of** `../um_admin` with the **same content-types and API routes** as the uniweb Strapi app. Run it with a **fresh database** and **separate** `public/uploads` volume for this brand.
 
 ## Intended deployment
 
@@ -33,8 +33,8 @@ Adjust `Dockerfile` path if your image build context differs.
 
 ## Relationship to eg_web
 
-The **`eg_web`** SPA points `VITE_STRAPI_URL` at this instance. **No schema changes** are required vs `../backend`; only **content** and **media** differ per brand.
+The **`eg_web`** SPA points `VITE_STRAPI_URL` at this instance. **No schema changes** are required vs `../um_admin`; only **content** and **media** differ per brand.
 
 ## Reference
 
-Upstream twin: **`../backend`** (uniweb) — keep eg_admin aligned when you intentionally port API fixes.
+Upstream twin: **`../um_admin`** (Unicare Medical / uniweb reference) — keep eg_admin aligned when you intentionally port API fixes.

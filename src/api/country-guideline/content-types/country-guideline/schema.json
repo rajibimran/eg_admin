@@ -19,19 +19,29 @@
       "type": "string",
       "required": true
     },
+    "priority": {
+      "type": "integer",
+      "default": 0,
+      "required": false,
+      "min": 0
+    },
     "flag": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": ["images"]
     },
-    "processingTime": {
-      "type": "string",
+    "details": {
+      "type": "text",
       "required": true
     },
-    "approvalNote": {
+    "marketingPoint1": {
       "type": "string",
-      "required": true
+      "required": false
+    },
+    "marketingPoint2": {
+      "type": "string",
+      "required": false
     },
     "expertTip": {
       "type": "text",
@@ -62,6 +72,34 @@
           "description": "Small flag icon; about 80×50px, ≤40 KB (PNG or WebP)."
         },
         "list": { "label": "Flag (80x50px)" }
+      },
+      "priority": {
+        "edit": {
+          "label": "Priority",
+          "description": "Display order on the frontend. Minimum 0 — lower numbers appear first (0 = top). Negative values are not allowed."
+        },
+        "list": { "label": "Priority", "sortable": true }
+      },
+      "details": {
+        "edit": {
+          "label": "Details",
+          "description": "Full summary shown in the left panel on the home country guidelines accordion (plain text or short markdown)."
+        },
+        "list": { "label": "Details" }
+      },
+      "marketingPoint1": {
+        "edit": {
+          "label": "Marketing point 1",
+          "description": "First bullet in the left panel (calendar icon on the website)."
+        },
+        "list": { "label": "Marketing point 1" }
+      },
+      "marketingPoint2": {
+        "edit": {
+          "label": "Marketing point 2",
+          "description": "Second bullet in the left panel (checkmark icon on the website)."
+        },
+        "list": { "label": "Marketing point 2" }
       }
     }
   }

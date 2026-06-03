@@ -18,6 +18,12 @@
       "targetField": "title",
       "required": true
     },
+    "priority": {
+      "type": "integer",
+      "default": 0,
+      "required": false,
+      "min": 0
+    },
     "icon": {
       "type": "string",
       "required": false
@@ -143,6 +149,13 @@
           "description": "Preferred: upload PNG/SVG (~64×64px, ≤30 KB). Overrides Lucide key when set."
         },
         "list": { "label": "Icon image" }
+      },
+      "priority": {
+        "edit": {
+          "label": "Priority",
+          "description": "Display order on the frontend. Minimum 0 — lower numbers appear first (0 = top). Negative values are not allowed."
+        },
+        "list": { "label": "Priority", "sortable": true }
       }
     }
   }

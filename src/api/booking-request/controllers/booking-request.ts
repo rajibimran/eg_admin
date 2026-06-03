@@ -82,7 +82,7 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
     try {
       const body = ctx.request.body as Record<string, unknown>;
       const patientName = String(body.patientName ?? body.name ?? "").trim();
-      const email = String(body.email ?? "").trim();
+      const emailRaw = String(body.email ?? "").trim();
       const phone = String(body.phone ?? "").trim();
       const serviceId = String(body.serviceId ?? "").trim();
       const serviceTitle = String(body.serviceTitle ?? "").trim();
@@ -94,11 +94,12 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
         ctx.body = { error: "Valid patient name is required" };
         return;
       }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (emailRaw && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRaw)) {
         ctx.status = 400;
-        ctx.body = { error: "Valid email is required" };
+        ctx.body = { error: "Enter a valid email address" };
         return;
       }
+      const email = emailRaw;
       if (!phone || phone.length > 40) {
         ctx.status = 400;
         ctx.body = { error: "Valid phone is required" };
@@ -137,7 +138,7 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
       await strapi.documents(UID as any).create({
         data: {
           patientName,
-          email,
+          email: email || null,
           phone,
           serviceId,
           ...(serviceTitle ? { serviceTitle } : {}),
@@ -166,7 +167,7 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
         "New online appointment request",
         "",
         `Name: ${patientName}`,
-        `Email: ${email}`,
+        `Email: ${email || "(not provided)"}`,
         `Phone: ${phone}`,
         `Service: ${serviceTitle || serviceId} (${serviceId})`,
         `Date: ${appointmentDate}`,
@@ -183,7 +184,7 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
             to: staffTo,
             subject: `[Booking request] ${patientName} — ${appointmentDate} ${timeSlot}`,
             text: adminText,
-            replyTo: email,
+            ...(email ? { replyTo: email } : {}),
           });
           if (adminMail.skipped) {
             strapi.log.warn(`[booking.submit] Staff email not sent: ${adminMail.reason}`);
@@ -193,7 +194,7 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
         }
       }
 
-      if (sendUserCopy) {
+      if (sendUserCopy && email) {
         try {
           const userText = [
             `Hi ${patientName},`,

@@ -134,3 +134,10 @@ build
 # Private lab report PDFs (uploaded via /api/lab-report-files/upload)
 private/lab-reports/*
 !private/lab-reports/.gitkeep
+
+############################
+# Docker
+############################
+
+docker-compose.yml
+Dockerfile
