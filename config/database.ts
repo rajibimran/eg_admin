@@ -45,7 +45,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Database 
     },
     sqlite: {
       connection: {
-        filename: path.join(__dirname, '..', '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+        filename: env('DATABASE_FILENAME', path.join(__dirname, '..', '..', '.tmp/data.db')),
       },
       useNullAsDefault: true,
     },

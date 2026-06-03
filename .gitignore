@@ -136,7 +136,7 @@ private/lab-reports/*
 !private/lab-reports/.gitkeep
 
 ############################
-# Docker
+# Docker (VPS maintains its own stack under /opt/stacks/evergreen/strapi — do not commit)
 ############################
 
 docker-compose.yml
