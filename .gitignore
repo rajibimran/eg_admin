@@ -135,6 +135,10 @@ build
 private/lab-reports/*
 !private/lab-reports/.gitkeep
 
+# Public passport lookup PDFs (reports/{PASSPORT}.pdf)
+reports/*.pdf
+!reports/.gitkeep
+
 ############################
 # Docker (VPS maintains its own stack under /opt/stacks/evergreen/strapi — do not commit)
 ############################

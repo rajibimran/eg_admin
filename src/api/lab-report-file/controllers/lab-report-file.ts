@@ -9,6 +9,7 @@ import {
   normalizePassportNumber,
   normalizePhoneDigits,
   removeStoredPdf,
+  resolvePassportReportFile,
 } from "../../../utils/lab-report-storage";
 
 const UID = "api::lab-report-file.lab-report-file" as const;
@@ -98,6 +99,39 @@ export default factories.createCoreController(UID as any, ({ strapi }) => ({
       ctx.body = fs.createReadStream(abs);
     } catch (e) {
       strapi.log.error("[lab-report-file.download]", e);
+      ctx.status = 500;
+      ctx.body = { error: "server_error" };
+    }
+  },
+
+  /**
+   * GET /api/lab-report-files/report?passportNumber=...
+   * Returns PDF stream from reports/{PASSPORT}.pdf on match; 404 otherwise.
+   */
+  async reportByPassport(ctx: any) {
+    try {
+      const passportNumber = normalizePassportNumber(
+        String(ctx.query?.passportNumber ?? ctx.request.body?.passportNumber ?? ""),
+      );
+      if (passportNumber.length < 4 || passportNumber.length > 64) {
+        ctx.status = 404;
+        ctx.body = { error: "not_found" };
+        return;
+      }
+
+      const abs = resolvePassportReportFile(passportNumber);
+      if (!abs || !fs.existsSync(abs)) {
+        ctx.status = 404;
+        ctx.body = { error: "not_found" };
+        return;
+      }
+
+      const filename = `${passportNumber}.pdf`;
+      ctx.set("Content-Type", "application/pdf");
+      ctx.set("Content-Disposition", `inline; filename="${filename}"`);
+      ctx.body = fs.createReadStream(abs);
+    } catch (e) {
+      strapi.log.error("[lab-report-file.reportByPassport]", e);
       ctx.status = 500;
       ctx.body = { error: "server_error" };
     }

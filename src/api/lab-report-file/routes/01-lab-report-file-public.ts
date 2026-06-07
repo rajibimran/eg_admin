@@ -21,6 +21,16 @@ export default {
       },
     },
     {
+      method: "GET",
+      path: "/lab-report-files/report",
+      handler: "lab-report-file.reportByPassport",
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
       method: "POST",
       path: "/lab-report-files/upload",
       handler: "lab-report-file.upload",

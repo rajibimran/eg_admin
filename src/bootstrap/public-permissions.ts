@@ -70,5 +70,6 @@ export async function grantPublicContentApis(strapi: Core.Strapi) {
   await grantPublicPermission(strapi, "api::booking-request.booking-request.submit");
   await grantPublicPermission(strapi, "api::booking-request.booking-request.availability");
   await grantPublicPermission(strapi, "api::lab-report-file.lab-report-file.download");
+  await grantPublicPermission(strapi, "api::lab-report-file.lab-report-file.reportByPassport");
   await grantPublicPermission(strapi, "api::lab-report-file.lab-report-file.staffLogin");
 }

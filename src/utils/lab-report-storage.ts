@@ -3,9 +3,24 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 
 const DIR_SEGMENTS = ["private", "lab-reports"] as const;
+const REPORTS_DIR_SEGMENTS = ["reports"] as const;
 
 export function getLabReportStorageDir(): string {
   return path.join(process.cwd(), ...DIR_SEGMENTS);
+}
+
+export function getReportsDir(): string {
+  return path.join(process.cwd(), ...REPORTS_DIR_SEGMENTS);
+}
+
+/** Exact match: reports/{PASSPORT}.pdf (passport normalized uppercase, no spaces). */
+export function resolvePassportReportFile(passportNumber: string): string | null {
+  const id = normalizePassportNumber(passportNumber);
+  if (id.length < 4 || id.length > 64) return null;
+  const filename = `${id}.pdf`;
+  const abs = path.join(getReportsDir(), filename);
+  if (path.basename(abs) !== filename) return null;
+  return abs;
 }
 
 export async function ensureLabReportStorageDir(): Promise<string> {
